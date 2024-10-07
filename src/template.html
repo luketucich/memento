@@ -5,25 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
+  <div id="listModal">
+    <div id="modalContent">
+      <span class="close">&times;</span>
+      <h2>Create New List</h2>
+      <form id="newListForm">
+        <label for="listName">List Name:</label>
+        <input type="text" id="listName" name="listName" required />
+        <button type="submit">Create List</button>
+      </form>
+    </div>
+  </div>
+
   <body>
     <header>
-      <div id="logo">memento</div>
+      <div id="logo">
+        <p id="memento">memento</p>
+        <i data-feather="feather" id="feather"></i>
+      </div>
       <div id="userContainer">
-        <div id="greeting">Good morning, Luke</div>
-        <img src="https://via.placeholder.com/150" id="avatar" alt="avatar" />
+        <div id="greeting"></div>
+        <img
+          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+          id="avatar"
+          alt="avatar"
+        />
       </div>
     </header>
     <div id="content">
       <div id="projectsContainer">
         <div class="project">
-          <p class="title">Homework</p>
+          <div class="projectHeader">
+            <p class="title">Homework</p>
+            <i data-feather="more-vertical" class="more"></i>
+          </div>
+          <div class="taskContainer">
+            <i data-feather="circle" class="circle"></i>
+            <p class="taskName">Finish CS Hw</p>
+          </div>
         </div>
       </div>
       <div id="newContainer">
         <i data-feather="plus" id="plus"></i>
         <div id="optionsContainer">
-          <div id="option">List</div>
-          <div id="option">Task</div>
+          <div class="option">List</div>
+          <div class="option">Task</div>
         </div>
       </div>
     </div>

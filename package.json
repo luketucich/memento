@@ -27,6 +27,7 @@
     "@fontsource/libre-baskerville": "^5.1.0",
     "@fontsource/poppins": "^5.1.0",
     "@fontsource/roboto": "^5.1.0",
-    "feather-icons": "^4.29.2"
+    "feather-icons": "^4.29.2",
+    "greeting-time": "^1.0.0"
   }
 }

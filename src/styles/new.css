@@ -1,53 +1,68 @@
 #newContainer {
   position: absolute;
+  bottom: 3rem;
+  right: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-primary-light);
+  background-color: var(--color-accent);
   border: none;
-  /* border: 0.1rem solid var(--color-primary-dark); */
   border-radius: 0.8rem;
   width: 3rem;
   height: 3rem;
-  bottom: 3rem;
-  right: 1rem;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 #newContainer:hover {
-  padding: 1rem;
-  padding-top: 4rem;
-  padding-left: 2rem;
+  padding: 2rem;
+}
 
-  #plus {
-    display: none;
-  }
+#plus {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 2;
+  color: var(--color-primary-light);
+}
 
-  #optionsContainer {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+#newContainer:hover #plus {
+  opacity: 0;
 }
 
 #optionsContainer {
-  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-#option {
+/* Make #optionsContainer visible on hover */
+#newContainer:hover #optionsContainer {
+  opacity: 1;
+  pointer-events: auto;
+  transition-delay: 0.3s;
+}
+
+/* Styles for options */
+.option {
+  background-color: var(--color-accent);
+  color: var(--color-primary-light);
   font-size: 1.3rem;
-  padding: 0.3rem;
+  font-weight: lighter;
+  padding: 0.3rem 0.6rem;
   text-align: center;
   border-radius: 0.8rem;
-  background-color: var(--color-secondary-light);
-  transition: background-color 0.3s ease-in-out;
+  transition: all 0.15s ease-in-out;
 }
 
-#option:hover {
+.option:hover {
   filter: brightness(0.85);
 }
