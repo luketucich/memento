@@ -1,0 +1,39 @@
+#content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: var(--color-secondary-light);
+  overflow-x: auto;
+}
+
+#projectsContainer {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 12rem;
+  gap: 1rem;
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-primary-light);
+  /* border: 0.1rem solid var(--color-primary-dark); */
+  border-radius: 0.8rem;
+}
+
+#new {
+  position: absolute;
+  background-color: var(--color-primary-light);
+  border: none;
+  /* border: 0.1rem solid var(--color-primary-dark); */
+  border-radius: 0.8rem;
+  width: 3rem;
+  height: 3rem;
+  bottom: 3rem;
+  right: 1rem;
+  cursor: pointer;
+}

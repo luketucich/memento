@@ -1,6 +1,6 @@
-// webpack.common.js
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: "./src/index.js",
@@ -13,12 +13,18 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/template.html",
     }),
+    new MiniCssExtractPlugin({
+      filename: "[name].css", // Separate CSS file(s) for each entry
+    }),
   ],
   module: {
     rules: [
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: [
+          MiniCssExtractPlugin.loader, // Extract CSS into files instead of embedding in JS
+          "css-loader", // Translates CSS into CommonJS modules
+        ],
       },
       {
         test: /\.html$/i,
