@@ -10,12 +10,18 @@ import feather from "feather-icons";
 feather.replace();
 
 // Imports functions
-import { create } from "./new";
+import { newList } from "./new";
 import { userGreeting } from "./greeting";
 
-// Updates user greeting based off time
+// Updates user information
 const greeting = document.getElementById("greeting");
+// Grab user's name from localStorage
 greeting.textContent = userGreeting + ", " + localStorage.getItem("username");
-
+// Grabs user's avatar from localStorage
 const avatar = document.getElementById("avatar");
 avatar.src = localStorage.getItem("avatar");
+
+// Event listener for 'new' button
+document.getElementById("list").addEventListener("click", function () {
+  newList();
+});
