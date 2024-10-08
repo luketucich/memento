@@ -3,32 +3,40 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: {
+    welcome: "./src/scripts/welcome.js",
+    dashboard: "./src/scripts/dashboard.js",
+  },
   output: {
-    filename: "main.js",
+    filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
     clean: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/template.html",
+      filename: "welcome.html",
+      template: "./src/html/welcome.html",
+      chunks: ["welcome"],
+    }),
+    new HtmlWebpackPlugin({
+      filename: "dashboard.html",
+      template: "./src/html/dashboard.html",
+      chunks: ["dashboard"],
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].css", // Separate CSS file(s) for each entry
+      filename: "[name].css",
     }),
   ],
   module: {
     rules: [
       {
         test: /\.css$/i,
-        use: [
-          MiniCssExtractPlugin.loader, // Extract CSS into files instead of embedding in JS
-          "css-loader", // Translates CSS into CommonJS modules
-        ],
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
         test: /\.html$/i,
-        loader: "html-loader",
+        exclude: path.resolve(__dirname, "src/html"), // Exclude templates
+        use: ["html-loader"],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
