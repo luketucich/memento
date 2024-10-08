@@ -86,18 +86,10 @@ button {
   padding: 0.5rem 1rem;
   width: 11rem;
   cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
-/* 
-<div id="listModalContainer">
-<div id="listModal">
-  <i data-feather="x" class="close"></i>
-  <p class="modalTitle">New List</p>
-  <form action="#" method="post">
-    <div class="form-group">
-      <label for="listName">List Name</label>
-      <input type="text" id="listName" name="listName" required />
-    </div>
-    <button type="submit">Create</button>
-  </form>
-</div> */
+button:hover {
+  filter: brightness(1.15);
+  transform: translateY(-0.1875rem);
+}

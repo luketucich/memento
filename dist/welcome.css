@@ -191,7 +191,7 @@ input[type="text"]:focus {
 }
 
 .submit-btn:hover {
-  background-color: #45a049;
+  filter: brightness(1.15);
   transform: translateY(-0.1875rem);
 }
 

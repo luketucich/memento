@@ -10,7 +10,7 @@ import feather from "feather-icons";
 feather.replace();
 
 // Imports functions
-import { newList } from "./new";
+import { hideListModal, listModalSubmitForm, showListModal } from "./new";
 import { userGreeting } from "./greeting";
 
 // Updates user information
@@ -23,5 +23,11 @@ avatar.src = localStorage.getItem("avatar");
 
 // Event listener for 'new' button
 document.getElementById("list").addEventListener("click", function () {
-  newList();
+  showListModal();
 });
+
+document
+  .getElementById("closeListModal")
+  .addEventListener("click", function () {
+    hideListModal();
+  });
