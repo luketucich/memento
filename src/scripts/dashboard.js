@@ -15,4 +15,7 @@ import { userGreeting } from "./greeting";
 
 // Updates user greeting based off time
 const greeting = document.getElementById("greeting");
-greeting.textContent = userGreeting + ", " + "Bertha";
+greeting.textContent = userGreeting + ", " + localStorage.getItem("username");
+
+const avatar = document.getElementById("avatar");
+avatar.src = localStorage.getItem("avatar");

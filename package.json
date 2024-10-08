@@ -24,6 +24,10 @@
     "webpack-merge": "^6.0.1"
   },
   "dependencies": {
+    "@dicebear/avatars": "^4.10.8",
+    "@dicebear/collection": "^9.2.2",
+    "@dicebear/core": "^9.2.2",
+    "@dicebear/thumbs": "^9.2.2",
     "@fontsource/libre-baskerville": "^5.1.0",
     "@fontsource/poppins": "^5.1.0",
     "@fontsource/roboto": "^5.1.0",

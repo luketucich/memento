@@ -15,12 +15,7 @@
         <!-- Name Input -->
         <div class="form-group">
           <label for="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            placeholder="Your Name"
-          />
+          <input type="text" id="username" name="username" required />
         </div>
 
         <!-- Avatar Selection -->
@@ -28,16 +23,44 @@
           <label>Avatar</label>
           <div class="avatars">
             <label>
-              <input type="radio" name="avatar" value="avatar1" required />
-              <img src="https://via.placeholder.com/100" alt="Avatar 1" />
+              <input
+                id="avatar1Button"
+                type="radio"
+                name="avatar"
+                value="avatar1"
+                required
+              />
+              <img
+                id="avatar1"
+                src="https://via.placeholder.com/100"
+                alt="Avatar 1"
+              />
             </label>
             <label>
-              <input type="radio" name="avatar" value="avatar2" />
-              <img src="https://via.placeholder.com/100" alt="Avatar 2" />
+              <input
+                id="avatar2Button"
+                type="radio"
+                name="avatar"
+                value="avatar2"
+              />
+              <img
+                id="avatar2"
+                src="https://via.placeholder.com/100"
+                alt="Avatar 2"
+              />
             </label>
             <label>
-              <input type="radio" name="avatar" value="avatar3" />
-              <img src="https://via.placeholder.com/100" alt="Avatar 3" />
+              <input
+                id="avatar3Button"
+                type="radio"
+                name="avatar"
+                value="avatar3"
+              />
+              <img
+                id="avatar3"
+                src="https://via.placeholder.com/100"
+                alt="Avatar 3"
+              />
             </label>
           </div>
         </div>
@@ -47,14 +70,20 @@
           <label>Theme</label>
           <div class="themes">
             <label>
-              <input type="radio" name="theme" value="light" required />
+              <input
+                id="lightButton"
+                type="radio"
+                name="theme"
+                value="light"
+                required
+              />
               <img
                 src="https://via.placeholder.com/100/FFFFFF/000000?text=Light+Theme"
                 alt="Light Theme"
               />
             </label>
             <label>
-              <input type="radio" name="theme" value="dark" />
+              <input id="darkButton" type="radio" name="theme" value="dark" />
               <img
                 src="https://via.placeholder.com/100/000000/FFFFFF?text=Dark+Theme"
                 alt="Dark Theme"

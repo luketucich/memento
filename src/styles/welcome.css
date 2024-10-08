@@ -1,6 +1,6 @@
 @import "@fontsource/poppins"; /* Defaults to weight 400 */
 @import "@fontsource/libre-baskerville"; /* Defaults to weight 400 */
-/* CSS Reset */
+
 * {
   margin: 0;
   padding: 0;
@@ -17,23 +17,15 @@
   --color-gray: #888888;
 }
 
-/* Add this to your existing CSS */
-
-/* Updated CSS for a more noticeable animated background */
-
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-family: var(--font-primary);
-  /* Remove the static background color */
-  /* background-color: var(--color-background); */
   color: var(--color-text);
   min-height: 100vh;
-
-  /* Updated animated background */
-  background: linear-gradient(-45deg, #ff7e5f, #feb47b, #86a8e7, #91eae4);
+  background: linear-gradient(-45deg, #f5e6cc, #f7cac9, #92a8d1, #ff6f61);
   background-size: 400% 400%;
   animation: gradientAnimation 8s ease infinite;
 }
@@ -94,8 +86,8 @@ body {
 input[type="text"] {
   text-align: center;
   padding: 1rem;
-  width: 50%;
-  max-width: 55%;
+  width: 70%;
+  max-width: 80%;
   font-size: 1rem;
   border: 0.0625rem solid var(--color-gray);
   border-radius: 0.5rem;
@@ -184,7 +176,7 @@ button {
   #feather {
     width: 2rem;
     height: 2rem;
-    margin-left: 0.3125rem;
+    margin-left: 0.3rem;
   }
 
   .form-group label {
