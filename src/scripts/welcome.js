@@ -18,25 +18,32 @@ const avatar2 = document.getElementById("avatar2");
 const avatar3 = document.getElementById("avatar3");
 
 avatar1.src = getRandomAvatarUrl();
-const avatar1src = avatar1.src;
 avatar2.src = getRandomAvatarUrl();
-const avatar2src = avatar1.src;
 avatar3.src = getRandomAvatarUrl();
-const avatar3src = avatar1.src;
 
 // Event listener for form submission
 document.querySelector("form").addEventListener("submit", function (event) {
   event.preventDefault();
 
+  if (
+    localStorage.getItem("username") &&
+    localStorage.getItem("avatar") &&
+    localStorage.getItem("theme")
+  ) {
+    alert("You already have an account!");
+    window.location.href = "dashboard.html";
+    return;
+  }
+
   // Save user's options to localStorage
   localStorage.setItem("username", document.getElementById("username").value);
 
   if (document.getElementById("avatar1Button").checked) {
-    localStorage.setItem("avatar", avatar1src);
+    localStorage.setItem("avatar", avatar1.src);
   } else if (document.getElementById("avatar2Button").checked) {
-    localStorage.setItem("avatar", avatar2src);
+    localStorage.setItem("avatar", avatar2.src);
   } else if (document.getElementById("avatar3Button").checked) {
-    localStorage.setItem("avatar", avatar3src);
+    localStorage.setItem("avatar", avatar3.src);
   }
 
   if (document.getElementById("darkButton").checked) {
