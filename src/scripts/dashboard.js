@@ -4,6 +4,8 @@ import "../styles/header.css";
 import "../styles/content.css";
 import "../styles/footer.css";
 import "../styles/new.css";
+import "../styles/listModal.css";
+import "../styles/taskModal.css";
 
 // Imports and updates icons
 import feather from "feather-icons";
@@ -15,11 +17,15 @@ import {
   listModalSubmitForm,
   showListModal,
   updateDOM,
-} from "./new";
+} from "./newList";
+
+import { hideTaskModal, showTaskModal, displayListOptions } from "./newTask";
+
 import { userGreeting } from "./greeting";
 
 // Display user's lists and tasks
 updateDOM();
+displayListOptions();
 
 // Updates user information
 const greeting = document.getElementById("greeting");
@@ -29,14 +35,28 @@ greeting.textContent = userGreeting + ", " + localStorage.getItem("username");
 const avatar = document.getElementById("avatar");
 avatar.src = localStorage.getItem("avatar");
 
+// LISTS
 // Event listener for 'new -> list' button
 document.getElementById("list").addEventListener("click", function () {
   showListModal();
 });
 
-// Event listener for closing the modal
+// Event listener for closing the list modal
 document
   .getElementById("closeListModal")
   .addEventListener("click", function () {
     hideListModal();
+  });
+
+// TASKS
+// Event listener for 'new -> task' button
+document.getElementById("task").addEventListener("click", function () {
+  showTaskModal();
+});
+
+// Event listener for closing the task modal
+document
+  .getElementById("closeTaskModal")
+  .addEventListener("click", function () {
+    hideTaskModal();
   });

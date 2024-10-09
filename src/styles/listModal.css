@@ -24,8 +24,8 @@
   border-radius: 0.8rem;
 }
 
-.modalTitle {
-  font-size: 2.8rem;
+#listModalTitle {
+  font-size: clamp(2.2rem, 2.5vw, 2.8rem);
   margin-bottom: 2rem;
   color: var(--color-accent);
   font-family: "Libre Baskerville", serif;
@@ -37,7 +37,7 @@
   color: var(--color-accent);
 }
 
-.close {
+#closeListModal {
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -69,7 +69,7 @@ input:focus {
   outline: none;
 }
 
-.form-group {
+#listFormGroup {
   display: flex;
   flex-direction: column;
   align-items: center;

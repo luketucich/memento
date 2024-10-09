@@ -5,25 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
   </head>
-  <body>
-    <div id="listModalContainer">
-      <div id="listModal">
-        <i data-feather="x" id="closeListModal" class="close"></i>
-        <div class="modalTitle">New List</div>
-        <form action="#" method="post" id="listModalForm">
-          <div class="form-group">
-            <input
-              required
-              type="text"
-              id="listName"
-              name="listName"
-              placeholder="Name"
-            />
-          </div>
-          <button type="submit">Create</button>
-        </form>
-      </div>
+  <div id="taskModalContainer">
+    <div id="taskModal">
+      <i data-feather="x" id="closeTaskModal"></i>
+      <div id="taskModalTitle">New Task</div>
+      <form action="#" method="post" id="taskModalForm">
+        <div id="taskFormGroup">
+          <input
+            required
+            type="text"
+            id="taskName"
+            name="taskName"
+            placeholder="Name"
+          />
+        </div>
+        <select id="listSelect" name="listSelect">
+          <option>Select List</option>
+        </select>
+        <button type="submit">Create</button>
+      </form>
     </div>
+  </div>
+  <div id="listModalContainer">
+    <div id="listModal">
+      <i data-feather="x" id="closeListModal"></i>
+      <div id="listModalTitle">New List</div>
+      <form action="#" method="post" id="listModalForm">
+        <div id="listFormGroup">
+          <input
+            required
+            type="text"
+            id="listName"
+            name="listName"
+            placeholder="Name"
+          />
+        </div>
+        <button type="submit">Create</button>
+      </form>
+    </div>
+  </div>
+  <body>
     <header>
       <div id="logo">
         <p id="memento">memento</p>

@@ -1,4 +1,4 @@
-import "../styles/modal.css";
+import "../styles/listModal.css";
 import feather from "feather-icons";
 
 class List {

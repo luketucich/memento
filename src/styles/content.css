@@ -17,7 +17,7 @@
 #projectsContainer {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: 12rem;
+  grid-auto-columns: 20rem;
   gap: 1rem;
 }
 
