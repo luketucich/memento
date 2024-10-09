@@ -1,12 +1,15 @@
 import "../styles/modal.css";
 import feather from "feather-icons";
 
-const lists = [];
-
 class List {
   constructor(name) {
     this.name = name;
   }
+}
+
+// Placeholder list
+if (!localStorage.getItem("lists")) {
+  localStorage.setItem("lists", JSON.stringify([]));
 }
 
 export function hideListModal() {
@@ -25,18 +28,18 @@ export function showListModal() {
   newButton.style.display = "none";
 }
 
-export function createList(name) {
-  const list = new List(name);
-  lists.push(list);
-}
-
-function updateDOM() {
+export function updateDOM() {
   const listContainer = document.getElementById("projectsContainer");
 
   // Remove all lists from DOM to ensure no duplicates
   while (listContainer.firstChild) {
     listContainer.removeChild(listContainer.firstChild);
   }
+
+  // Grabs lists stored in localStorage
+  const storedLists = localStorage.getItem("lists");
+  // Converts stored lists JSON to an array
+  const lists = JSON.parse(storedLists);
 
   for (let i = 0; i < lists.length; i++) {
     // Create list container
@@ -67,19 +70,32 @@ function updateDOM() {
   }
 }
 
+export function updateLocalStorage(name) {
+  // Grabs lists stored in localStorage
+  const storedLists = localStorage.getItem("lists");
+  // Converts stored lists JSON to an array
+  const lists = JSON.parse(storedLists);
+  // Adds new list to array
+  lists.push(new List(name));
+  // Updates localStorage with new list
+  const updatedStoredLists = JSON.stringify(lists);
+  localStorage.setItem("lists", updatedStoredLists);
+}
+
 export const listModalSubmitForm = (() => {
   const form = document.getElementById("listModalForm");
 
   form.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    // Adds list to lists array
-    createList(document.getElementById("listName").value);
+    const listName = document.getElementById("listName").value;
+
+    // Update local storage and DOM
+    updateLocalStorage(listName);
+    updateDOM();
 
     // Hides modal and resets form
     hideListModal();
     form.reset();
-
-    updateDOM();
   });
 })();

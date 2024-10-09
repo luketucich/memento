@@ -10,8 +10,16 @@ import feather from "feather-icons";
 feather.replace();
 
 // Imports functions
-import { hideListModal, listModalSubmitForm, showListModal } from "./new";
+import {
+  hideListModal,
+  listModalSubmitForm,
+  showListModal,
+  updateDOM,
+} from "./new";
 import { userGreeting } from "./greeting";
+
+// Display user's lists and tasks
+updateDOM();
 
 // Updates user information
 const greeting = document.getElementById("greeting");
@@ -21,11 +29,12 @@ greeting.textContent = userGreeting + ", " + localStorage.getItem("username");
 const avatar = document.getElementById("avatar");
 avatar.src = localStorage.getItem("avatar");
 
-// Event listener for 'new' button
+// Event listener for 'new -> list' button
 document.getElementById("list").addEventListener("click", function () {
   showListModal();
 });
 
+// Event listener for closing the modal
 document
   .getElementById("closeListModal")
   .addEventListener("click", function () {
