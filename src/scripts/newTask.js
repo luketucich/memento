@@ -2,13 +2,13 @@ import "../styles/taskModal.css";
 import feather from "feather-icons";
 
 class Task {
-  constructor(name, date, priority) {
+  constructor(name, date, time) {
     this.name = name;
     this.date = date;
-    this.priority = priority;
+    this.time = time;
   }
 }
-export function displayListOptions() {
+function displayListOptions() {
   // Grabs lists stored in localStorage
   const storedLists = localStorage.getItem("lists");
   // Converts stored lists JSON to an array
@@ -28,9 +28,11 @@ export function displayListOptions() {
 export function hideTaskModal() {
   const modalContainer = document.getElementById("taskModalContainer");
   const newButton = document.getElementById("newContainer");
+  const form = document.getElementById("taskModalForm");
 
   modalContainer.style.display = "none";
   newButton.style.display = "flex";
+  form.reset();
 }
 
 export function showTaskModal() {
@@ -39,6 +41,7 @@ export function showTaskModal() {
 
   modalContainer.style.display = "block";
   newButton.style.display = "none";
+  displayListOptions();
 }
 
 // export function updateDOM() {
@@ -94,21 +97,34 @@ export function showTaskModal() {
 //   const updatedStoredLists = JSON.stringify(lists);
 //   localStorage.setItem("lists", updatedStoredLists);
 // }
+function addTaskToLocalStorage(list, task) {
+  // Grabs lists stored in localStorage
+  const storedLists = localStorage.getItem("lists");
+  // Converts stored lists JSON to an array
+  const lists = JSON.parse(storedLists);
+  // Adds new task to list
+  lists[list].tasks.push(task);
+  // Updates localStorage with new task
+  const updatedStoredLists = JSON.stringify(lists);
+  localStorage.setItem("lists", updatedStoredLists);
+}
 
-// export const listModalSubmitForm = (() => {
-//   const form = document.getElementById("listModalForm");
+const taskModalSubmitForm = (() => {
+  const form = document.getElementById("taskModalForm");
 
-//   form.addEventListener("submit", function (event) {
-//     event.preventDefault();
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
 
-//     const listName = document.getElementById("listName").value;
+    const name = document.getElementById("taskName").value;
+    const date = document.getElementById("dateSelect").value;
+    const time = document.getElementById("timeSelect").value;
+    const list = document.getElementById("listSelect").selectedIndex - 1;
+    const task = new Task(name, date, time);
 
-//     // Update local storage and DOM
-//     updateLocalStorage(listName);
-//     updateDOM();
+    // Adds task to corresponding list in local storage
+    addTaskToLocalStorage(list, task);
 
-//     // Hides modal and resets form
-//     hideListModal();
-//     form.reset();
-//   });
-// })();
+    hideTaskModal();
+    form.reset();
+  });
+})();

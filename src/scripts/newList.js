@@ -4,6 +4,7 @@ import feather from "feather-icons";
 class List {
   constructor(name) {
     this.name = name;
+    this.tasks = [];
   }
 }
 
@@ -15,9 +16,11 @@ if (!localStorage.getItem("lists")) {
 export function hideListModal() {
   const modalContainer = document.getElementById("listModalContainer");
   const newButton = document.getElementById("newContainer");
+  const form = document.getElementById("listModalForm");
 
   modalContainer.style.display = "none";
   newButton.style.display = "flex";
+  form.reset();
 }
 
 export function showListModal() {
@@ -70,19 +73,21 @@ export function updateDOM() {
   }
 }
 
-export function updateLocalStorage(name) {
+function addListToLocalStorage(name) {
   // Grabs lists stored in localStorage
   const storedLists = localStorage.getItem("lists");
   // Converts stored lists JSON to an array
   const lists = JSON.parse(storedLists);
   // Adds new list to array
-  lists.push(new List(name));
+  const list = new List(name);
+
+  lists.push(list);
   // Updates localStorage with new list
   const updatedStoredLists = JSON.stringify(lists);
   localStorage.setItem("lists", updatedStoredLists);
 }
 
-export const listModalSubmitForm = (() => {
+const listModalSubmitForm = (() => {
   const form = document.getElementById("listModalForm");
 
   form.addEventListener("submit", function (event) {
@@ -91,7 +96,7 @@ export const listModalSubmitForm = (() => {
     const listName = document.getElementById("listName").value;
 
     // Update local storage and DOM
-    updateLocalStorage(listName);
+    addListToLocalStorage(listName);
     updateDOM();
 
     // Hides modal and resets form

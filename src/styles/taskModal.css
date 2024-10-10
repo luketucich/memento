@@ -1,6 +1,6 @@
 #taskModalContainer {
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
   backdrop-filter: blur(10px);
   background-color: rgba(0, 0, 0, 0.05);
   position: absolute;
@@ -31,9 +31,15 @@
   font-family: "Libre Baskerville", serif;
 }
 
-#listIcon {
-  width: 3rem;
-  height: 3rem;
+.inputGroup {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.inputIcon {
+  width: 2rem;
+  height: 2rem;
   color: var(--color-accent);
 }
 
@@ -46,14 +52,8 @@
   color: var(--color-gray);
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-input {
+#listSelect,
+#timeSelect {
   font-size: 1.2rem;
   box-sizing: border-box;
   text-align: center;
@@ -65,31 +65,7 @@ input {
   border: 0.1rem double var(--color-gray);
 }
 
-input:focus {
-  outline: none;
-}
-
-#taskFormGroup {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-button {
-  font-size: 1.2rem;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-  background-color: var(--color-accent);
-  color: white;
-  border: none;
-  border-radius: 0.8rem;
-  padding: 0.5rem 1rem;
-  width: 11rem;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-button:hover {
-  filter: brightness(1.15);
-  transform: translateY(-0.1875rem);
+#timeSelect,
+#dateSelect {
+  padding: 0.5rem;
 }

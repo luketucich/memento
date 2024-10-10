@@ -10,18 +10,18 @@
       <i data-feather="x" id="closeTaskModal"></i>
       <div id="taskModalTitle">New Task</div>
       <form action="#" method="post" id="taskModalForm">
-        <div id="taskFormGroup">
-          <input
-            required
-            type="text"
-            id="taskName"
-            name="taskName"
-            placeholder="Name"
-          />
-        </div>
-        <select id="listSelect" name="listSelect">
-          <option>Select List</option>
+        <input
+          required
+          type="text"
+          id="taskName"
+          name="taskName"
+          placeholder="Name"
+        />
+        <select id="listSelect" name="listSelect" required>
+          <option disabled selected>Select List</option>
         </select>
+        <input type="date" id="dateSelect" name="date" required />
+        <input type="time" id="timeSelect" name="time" required />
         <button type="submit">Create</button>
       </form>
     </div>

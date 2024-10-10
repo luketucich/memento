@@ -19,13 +19,12 @@ import {
   updateDOM,
 } from "./newList";
 
-import { hideTaskModal, showTaskModal, displayListOptions } from "./newTask";
+import { hideTaskModal, showTaskModal } from "./newTask";
 
 import { userGreeting } from "./greeting";
 
 // Display user's lists and tasks
 updateDOM();
-displayListOptions();
 
 // Updates user information
 const greeting = document.getElementById("greeting");

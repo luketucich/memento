@@ -69,6 +69,10 @@ input:focus {
   outline: none;
 }
 
+input::placeholder {
+  color: var(--color-gray);
+}
+
 #listFormGroup {
   display: flex;
   flex-direction: column;
