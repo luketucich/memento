@@ -17,9 +17,7 @@
           name="taskName"
           placeholder="Name"
         />
-        <select id="listSelect" name="listSelect" required>
-          <option disabled selected>Select List</option>
-        </select>
+        <select id="listSelect" name="listSelect" required></select>
         <input type="date" id="dateSelect" name="date" required />
         <input type="time" id="timeSelect" name="time" required />
         <button type="submit">Create</button>
@@ -60,18 +58,7 @@
       </div>
     </header>
     <div id="content">
-      <div id="projectsContainer">
-        <div class="project">
-          <div class="projectHeader">
-            <p class="title">Homework</p>
-            <i data-feather="more-vertical" class="more"></i>
-          </div>
-          <div class="taskContainer">
-            <i data-feather="circle" class="circle"></i>
-            <p class="taskName">Finish CS Hw</p>
-          </div>
-        </div>
-      </div>
+      <div id="projectsContainer"></div>
       <div id="newContainer">
         <i data-feather="plus" id="plus"></i>
         <div id="optionsContainer">

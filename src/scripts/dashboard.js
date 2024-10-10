@@ -12,19 +12,15 @@ import feather from "feather-icons";
 feather.replace();
 
 // Imports functions
-import {
-  hideListModal,
-  listModalSubmitForm,
-  showListModal,
-  updateDOM,
-} from "./newList";
+import { hideListModal, showListModal, updateDOMLists } from "./newList";
 
-import { hideTaskModal, showTaskModal } from "./newTask";
+import { hideTaskModal, showTaskModal, updateDOMTasks } from "./newTask";
 
 import { userGreeting } from "./greeting";
 
 // Display user's lists and tasks
-updateDOM();
+updateDOMLists();
+updateDOMTasks();
 
 // Updates user information
 const greeting = document.getElementById("greeting");

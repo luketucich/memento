@@ -164,10 +164,15 @@ header {
 
 .taskContainer {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
+  flex-direction: column;
+}
+
+.task {
+  height: 3rem;
   margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 footer {
@@ -190,8 +195,8 @@ footer {
   background-color: var(--color-accent);
   border: none;
   border-radius: 0.8rem;
-  width: 3rem;
-  height: 3rem;
+  width: 3.8rem;
+  height: 3.8rem;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -219,7 +224,6 @@ footer {
   transform: translate(-50%, -50%);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease-in-out;
   z-index: 1;
   display: flex;
   flex-direction: column;
@@ -229,6 +233,7 @@ footer {
 /* Make #optionsContainer visible on hover */
 #newContainer:hover #optionsContainer {
   opacity: 1;
+  transition: opacity 0.3s ease-in-out;
   pointer-events: auto;
   transition-delay: 0.3s;
 }
@@ -320,6 +325,10 @@ input:focus {
   outline: none;
 }
 
+input::placeholder {
+  color: var(--color-gray);
+}
+
 #listFormGroup {
   display: flex;
   flex-direction: column;
@@ -346,8 +355,8 @@ button:hover {
 }
 
 #taskModalContainer {
-  width: 100vw;
-  height: 100vh;
+  min-width: 100vw;
+  min-height: 100vh;
   backdrop-filter: blur(10px);
   background-color: rgba(0, 0, 0, 0.05);
   position: absolute;
@@ -378,9 +387,15 @@ button:hover {
   font-family: "Libre Baskerville", serif;
 }
 
-#listIcon {
-  width: 3rem;
-  height: 3rem;
+.inputGroup {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.inputIcon {
+  width: 2rem;
+  height: 2rem;
   color: var(--color-accent);
 }
 
@@ -393,14 +408,8 @@ button:hover {
   color: var(--color-gray);
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-input {
+#listSelect,
+#timeSelect {
   font-size: 1.2rem;
   box-sizing: border-box;
   text-align: center;
@@ -412,32 +421,8 @@ input {
   border: 0.1rem double var(--color-gray);
 }
 
-input:focus {
-  outline: none;
-}
-
-#taskFormGroup {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-button {
-  font-size: 1.2rem;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-  background-color: var(--color-accent);
-  color: white;
-  border: none;
-  border-radius: 0.8rem;
-  padding: 0.5rem 1rem;
-  width: 11rem;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-button:hover {
-  filter: brightness(1.15);
-  transform: translateY(-0.1875rem);
+#timeSelect,
+#dateSelect {
+  padding: 0.5rem;
 }
 

@@ -9,6 +9,9 @@ class Task {
   }
 }
 function displayListOptions() {
+  // Clears initial list options to prevent duplicates
+  const listDropdownMenu = document.getElementById("listSelect");
+  listDropdownMenu.innerHTML = "";
   // Grabs lists stored in localStorage
   const storedLists = localStorage.getItem("lists");
   // Converts stored lists JSON to an array
@@ -44,59 +47,32 @@ export function showTaskModal() {
   displayListOptions();
 }
 
-// export function updateDOM() {
-//   const listContainer = document.getElementById("projectsContainer");
+export function updateDOMTasks() {
+  // Retrieve and parse the stored lists
+  const storedLists = localStorage.getItem("lists");
+  const lists = JSON.parse(storedLists);
 
-//   // Remove all lists from DOM to ensure no duplicates
-//   while (listContainer.firstChild) {
-//     listContainer.removeChild(listContainer.firstChild);
-//   }
+  // Output
+  for (const list in lists) {
+    const currListTasks = lists[list].tasks;
+    const currTaskContainer = document.querySelector(
+      `div.taskContainer[data-index="${list}"]`
+    );
+    currTaskContainer.innerHTML = "";
+    for (const task in currListTasks) {
+      const taskElement = document.createElement("div");
+      taskElement.classList.add("task");
+      taskElement.innerHTML = `
+      <i data-feather="circle" class="circle"></i>
+      <p class="taskName">${currListTasks[task].name}</p>
+      `;
 
-//   // Grabs lists stored in localStorage
-//   const storedLists = localStorage.getItem("lists");
-//   // Converts stored lists JSON to an array
-//   const lists = JSON.parse(storedLists);
+      currTaskContainer.appendChild(taskElement);
+      feather.replace();
+    }
+  }
+}
 
-//   for (let i = 0; i < lists.length; i++) {
-//     // Create list container
-//     const list = document.createElement("div");
-//     list.classList.add("project");
-//     list.setAttribute("index", `${i}`);
-
-//     // Create list header
-//     const listHeader = document.createElement("div");
-//     listHeader.classList.add("projectHeader");
-//     // List title
-//     const title = document.createElement("p");
-//     title.classList.add("title");
-//     title.textContent = lists[i].name;
-//     // Options icon
-//     const options = document.createElement("i");
-//     options.setAttribute("data-feather", "more-vertical");
-//     options.classList.add("more");
-//     listHeader.appendChild(title);
-//     listHeader.appendChild(options);
-//     list.appendChild(listHeader);
-
-//     // Add list to lists container
-//     listContainer.appendChild(list);
-
-//     // Load feather icons
-//     feather.replace();
-//   }
-// }
-
-// export function updateLocalStorage(name) {
-//   // Grabs lists stored in localStorage
-//   const storedLists = localStorage.getItem("lists");
-//   // Converts stored lists JSON to an array
-//   const lists = JSON.parse(storedLists);
-//   // Adds new list to array
-//   lists.push(new List(name));
-//   // Updates localStorage with new list
-//   const updatedStoredLists = JSON.stringify(lists);
-//   localStorage.setItem("lists", updatedStoredLists);
-// }
 function addTaskToLocalStorage(list, task) {
   // Grabs lists stored in localStorage
   const storedLists = localStorage.getItem("lists");
@@ -118,11 +94,12 @@ const taskModalSubmitForm = (() => {
     const name = document.getElementById("taskName").value;
     const date = document.getElementById("dateSelect").value;
     const time = document.getElementById("timeSelect").value;
-    const list = document.getElementById("listSelect").selectedIndex - 1;
+    const list = document.getElementById("listSelect").selectedIndex;
     const task = new Task(name, date, time);
 
     // Adds task to corresponding list in local storage
     addTaskToLocalStorage(list, task);
+    updateDOMTasks();
 
     hideTaskModal();
     form.reset();

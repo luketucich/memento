@@ -54,8 +54,13 @@
 
 .taskContainer {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
+  flex-direction: column;
+}
+
+.task {
+  height: 3rem;
   margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }

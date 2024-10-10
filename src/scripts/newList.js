@@ -31,46 +31,37 @@ export function showListModal() {
   newButton.style.display = "none";
 }
 
-export function updateDOM() {
+export function updateDOMLists() {
   const listContainer = document.getElementById("projectsContainer");
 
-  // Remove all lists from DOM to ensure no duplicates
-  while (listContainer.firstChild) {
-    listContainer.removeChild(listContainer.firstChild);
-  }
+  // Clear the container
+  listContainer.innerHTML = "";
 
-  // Grabs lists stored in localStorage
+  // Retrieve and parse the stored lists
   const storedLists = localStorage.getItem("lists");
-  // Converts stored lists JSON to an array
   const lists = JSON.parse(storedLists);
 
-  for (let i = 0; i < lists.length; i++) {
-    // Create list container
-    const list = document.createElement("div");
-    list.classList.add("project");
-    list.setAttribute("index", `${i}`);
+  // Construct the HTML
+  const html = lists
+    .map(
+      (list, index) => `
+    <div class="project" data-index="${index}">
+      <div class="projectHeader">
+        <p class="title">${list.name}</p>
+        <i data-feather="more-vertical" class="more"></i>
+      </div>
+      <div class="taskContainer" data-index="${index}">
+     </div>
+    </div>
+  `
+    )
+    .join("");
 
-    // Create list header
-    const listHeader = document.createElement("div");
-    listHeader.classList.add("projectHeader");
-    // List title
-    const title = document.createElement("p");
-    title.classList.add("title");
-    title.textContent = lists[i].name;
-    // Options icon
-    const options = document.createElement("i");
-    options.setAttribute("data-feather", "more-vertical");
-    options.classList.add("more");
-    listHeader.appendChild(title);
-    listHeader.appendChild(options);
-    list.appendChild(listHeader);
+  // Insert the constructed HTML into the container
+  listContainer.innerHTML = html;
 
-    // Add list to lists container
-    listContainer.appendChild(list);
-
-    // Load feather icons
-    feather.replace();
-  }
+  // Initialize Feather icons
+  feather.replace();
 }
 
 function addListToLocalStorage(name) {
@@ -97,7 +88,7 @@ const listModalSubmitForm = (() => {
 
     // Update local storage and DOM
     addListToLocalStorage(listName);
-    updateDOM();
+    updateDOMLists();
 
     // Hides modal and resets form
     hideListModal();
