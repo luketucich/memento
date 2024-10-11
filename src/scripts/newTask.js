@@ -1,4 +1,5 @@
 import "../styles/taskModal.css";
+import completedSound from "./completed.wav";
 import feather from "feather-icons";
 
 class Task {
@@ -48,6 +49,31 @@ export function showTaskModal() {
   displayListOptions();
 }
 
+function finishTaskLocalStorage() {
+  // Get current task's parent list by index
+  const parentListIndex = event.target
+    .closest(".task")
+    .closest(".taskContainer")
+    .closest(".project").dataset.index;
+  console.log(parentListIndex);
+
+  // Get current task by index in parent list
+  const taskIndex = event.target.closest(".task").dataset.index;
+
+  // Update Local Storage
+  const storedLists = localStorage.getItem("lists");
+  const lists = JSON.parse(storedLists);
+
+  // Move task from 'tasks' to 'completed'
+  const task = lists[parentListIndex].tasks[taskIndex];
+  lists[parentListIndex].completed.push(task);
+  lists[parentListIndex].tasks.splice(taskIndex, 1);
+
+  // Update Local Storage
+  localStorage.setItem("lists", JSON.stringify(lists));
+}
+function finishTaskDOM() {}
+
 export function updateDOMTasks() {
   // Retrieve and parse the stored lists
   const storedLists = localStorage.getItem("lists");
@@ -63,6 +89,7 @@ export function updateDOMTasks() {
     for (const task in currListTasks) {
       const taskElement = document.createElement("div");
       taskElement.classList.add("task");
+      taskElement.dataset.index = task;
       const taskDate = new Date(currListTasks[task].date);
       const formattedDate = `${(taskDate.getMonth() + 1)
         .toString()
@@ -90,10 +117,14 @@ export function updateDOMTasks() {
         <p class="taskPriority">${currListTasks[task].priority} Priority</p>
       </div>
       `;
+
+      currTaskContainer.appendChild(taskElement);
       feather.replace();
+
       const dropdownArrow = taskElement.querySelector(".dropdownArrow");
       const dateContainer = taskElement.querySelector(".dateContainer");
       const priorityContainer = taskElement.querySelector(".priorityContainer");
+      const circle = taskElement.querySelector(".circle");
 
       dropdownArrow.addEventListener("change", function () {
         if (dropdownArrow.checked) {
@@ -109,13 +140,15 @@ export function updateDOMTasks() {
         }
       });
 
-      // circle.addEventListener("click", function () {
-      //   console.log("test");
-      //   const audio = new Audio("completed.wav");
-      //   audio.play();
-      // });
+      circle.addEventListener("click", function () {
+        // Play sound
+        const audio = new Audio(completedSound);
+        audio.play();
 
-      currTaskContainer.appendChild(taskElement);
+        // Update Local Storage
+        finishTaskLocalStorage();
+        updateDOMTasks();
+      });
     }
   }
 }
@@ -148,7 +181,6 @@ const taskModalSubmitForm = (() => {
     // Adds task to corresponding list in local storage
     addTaskToLocalStorage(list, task);
     updateDOMTasks();
-    feather.replace();
 
     hideTaskModal();
     form.reset();
