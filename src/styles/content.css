@@ -19,15 +19,18 @@
   grid-auto-flow: column;
   grid-auto-columns: 20rem;
   gap: 1rem;
+  position: relative;
 }
 
 .project {
+  color: var(--color-gray);
   display: flex;
   flex-direction: column;
   background-color: var(--color-primary-light);
   border-radius: 0.8rem;
   padding-left: 1rem;
   padding-right: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .projectHeader {
@@ -38,18 +41,8 @@
 
 .title {
   color: var(--color-gray);
-}
-
-.more {
-  width: 1.2rem;
-  height: 1.2rem;
-}
-
-.circle {
-  font-weight: lighter;
-  color: var(--color-gray);
-  width: 1rem;
-  height: 1rem;
+  font-size: 1.1rem;
+  font-weight: bolder;
 }
 
 .taskContainer {
@@ -58,9 +51,88 @@
 }
 
 .task {
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: var(--color-primary-light);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 0.8rem;
   height: 3rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.taskName {
+  word-wrap: break-word;
+  word-break: break-word;
+}
+.task > * {
+  user-select: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.circle {
+  position: absolute;
+  left: 2rem;
+  font-weight: lighter;
+  color: var(--color-gray);
+  width: 1.2rem;
+  height: 1.2rem;
+  cursor: pointer;
+}
+
+.dropdownArrow {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  width: 1.2rem;
+  height: 1.2rem;
+  cursor: pointer;
+  border: none;
+
+  position: absolute;
+  left: 16.5rem;
+
+  background-image: url("chevron-right.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.more {
+  width: 1.2rem;
+  height: 1.2rem;
+  cursor: pointer;
+}
+.dateContainer,
+.priorityContainer {
+  display: flex;
+  width: 15rem;
+  align-items: center;
+  margin-top: 5rem;
+  position: absolute;
+  opacity: 0;
+  gap: 0.2rem;
+  left: 2rem;
+  flex-shrink: 0;
+  gap: 0.8rem;
+}
+
+.dateContainer > *,
+.priorityContainer > * {
+  user-select: none;
+}
+
+.priorityContainer {
+  margin-top: 10rem;
+}
+
+.flag,
+.clock {
+  width: 1.2rem;
+  height: 1.2rem;
+  flex-shrink: 0;
 }

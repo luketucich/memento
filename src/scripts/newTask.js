@@ -2,10 +2,11 @@ import "../styles/taskModal.css";
 import feather from "feather-icons";
 
 class Task {
-  constructor(name, date, time) {
+  constructor(name, date, time, priority) {
     this.name = name;
     this.date = date;
     this.time = time;
+    this.priority = priority;
   }
 }
 function displayListOptions() {
@@ -62,13 +63,59 @@ export function updateDOMTasks() {
     for (const task in currListTasks) {
       const taskElement = document.createElement("div");
       taskElement.classList.add("task");
+      const taskDate = new Date(currListTasks[task].date);
+      const formattedDate = `${(taskDate.getMonth() + 1)
+        .toString()
+        .padStart(2, "0")}/${taskDate
+        .getDate()
+        .toString()
+        .padStart(2, "0")}/${taskDate.getFullYear().toString().slice(-2)}`;
+
+      // Convert time to 0:00 AM/PM format
+      const [hour, minute] = currListTasks[task].time.split(":");
+      const ampm = hour >= 12 ? "PM" : "AM";
+      const formattedHour = hour % 12 || 12;
+      const formattedTime = `${formattedHour}:${minute} ${ampm}`;
+
       taskElement.innerHTML = `
       <i data-feather="circle" class="circle"></i>
       <p class="taskName">${currListTasks[task].name}</p>
+      <input type="checkbox" class="dropdownArrow">
+      <div class="dateContainer">
+        <i data-feather="clock" class="clock"></i>
+        <p class="taskDate">Due <u>${formattedDate}</u> at <u>${formattedTime}</u></p>
+      </div>
+      <div class="priorityContainer">
+        <i data-feather="flag" class="flag"></i>
+        <p class="taskPriority">${currListTasks[task].priority} Priority</p>
+      </div>
       `;
+      feather.replace();
+      const dropdownArrow = taskElement.querySelector(".dropdownArrow");
+      const dateContainer = taskElement.querySelector(".dateContainer");
+      const priorityContainer = taskElement.querySelector(".priorityContainer");
+
+      dropdownArrow.addEventListener("change", function () {
+        if (dropdownArrow.checked) {
+          dropdownArrow.style = "transform: rotate(90deg)";
+          taskElement.style = "padding-bottom: 5rem";
+          dateContainer.style = "opacity: 1";
+          priorityContainer.style = "opacity: 1";
+        } else {
+          dropdownArrow.style = "transform: rotate(0deg)";
+          taskElement.style = "padding-bottom: 0.5rem";
+          dateContainer.style = "opacity: 0";
+          priorityContainer.style = "opacity: 0";
+        }
+      });
+
+      // circle.addEventListener("click", function () {
+      //   console.log("test");
+      //   const audio = new Audio("completed.wav");
+      //   audio.play();
+      // });
 
       currTaskContainer.appendChild(taskElement);
-      feather.replace();
     }
   }
 }
@@ -94,12 +141,14 @@ const taskModalSubmitForm = (() => {
     const name = document.getElementById("taskName").value;
     const date = document.getElementById("dateSelect").value;
     const time = document.getElementById("timeSelect").value;
+    const priority = document.getElementById("prioritySelect").value;
     const list = document.getElementById("listSelect").selectedIndex;
-    const task = new Task(name, date, time);
+    const task = new Task(name, date, time, priority);
 
     // Adds task to corresponding list in local storage
     addTaskToLocalStorage(list, task);
     updateDOMTasks();
+    feather.replace();
 
     hideTaskModal();
     form.reset();

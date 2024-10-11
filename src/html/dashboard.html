@@ -17,9 +17,18 @@
           name="taskName"
           placeholder="Name"
         />
-        <select id="listSelect" name="listSelect" required></select>
-        <input type="date" id="dateSelect" name="date" required />
-        <input type="time" id="timeSelect" name="time" required />
+        <div class="taskModalInfoContainer">
+          <select id="listSelect" name="listSelect" required></select>
+          <select id="prioritySelect" name="prioritySelect" required>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </div>
+        <div class="taskModalDateContainer">
+          <input type="date" id="dateSelect" name="date" required />
+          <input type="time" id="timeSelect" name="time" required />
+        </div>
         <button type="submit">Create</button>
       </form>
     </div>

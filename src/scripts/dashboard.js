@@ -9,7 +9,6 @@ import "../styles/taskModal.css";
 
 // Imports and updates icons
 import feather from "feather-icons";
-feather.replace();
 
 // Imports functions
 import { hideListModal, showListModal, updateDOMLists } from "./newList";
@@ -55,3 +54,5 @@ document
   .addEventListener("click", function () {
     hideTaskModal();
   });
+
+feather.replace();

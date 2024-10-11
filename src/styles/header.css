@@ -3,6 +3,7 @@ header {
   height: 5rem;
   align-items: center;
   justify-content: space-between;
+  background-color: var(--color-primary-light);
   padding-left: 1rem;
   padding-right: 1rem;
 }
@@ -31,6 +32,7 @@ header {
 }
 
 #greeting {
+  color: var(--color-gray);
   font-size: 1.1rem;
 }
 
@@ -44,5 +46,6 @@ header {
   height: 3.2rem;
   border-radius: 0.8rem;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   object-fit: cover;
 }
