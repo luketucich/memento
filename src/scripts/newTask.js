@@ -1,4 +1,5 @@
 import "../styles/taskModal.css";
+import { updateDOMLists } from "./newList";
 import completedSound from "./completed.wav";
 import feather from "feather-icons";
 
@@ -127,16 +128,18 @@ export function updateDOMTasks() {
       const dropdownArrow = taskElement.querySelector(".dropdownArrow");
       const priorityContainer = taskElement.querySelector(".priorityContainer");
       const dateContainer = taskElement.querySelector(".dateContainer");
+      const clock = taskElement.querySelector(".clock");
+      const flag = taskElement.querySelector(".flag");
 
       dropdownArrow.addEventListener("change", function () {
         if (dropdownArrow.checked) {
           dropdownArrow.style = "transform: rotate(90deg)";
-          dateContainer.style = "display: flex";
-          priorityContainer.style = "display: flex";
+          dateContainer.style.display = "flex";
+          priorityContainer.style.display = "flex";
         } else {
           dropdownArrow.style = "transform: rotate(0deg)";
-          dateContainer.style = "display: none";
-          priorityContainer.style = "display: none";
+          dateContainer.style.display = "none";
+          priorityContainer.style.display = "none";
         }
       });
 
@@ -148,6 +151,8 @@ export function updateDOMTasks() {
         // Update Local Storage
         finishTaskLocalStorage();
         updateDOMTasks();
+        updateDOMLists();
+        completedTasksDOM();
       });
     }
   }
@@ -163,6 +168,26 @@ function addTaskToLocalStorage(list, task) {
   // Updates localStorage with new task
   const updatedStoredLists = JSON.stringify(lists);
   localStorage.setItem("lists", updatedStoredLists);
+}
+
+export function completedTasksDOM() {
+  const storedLists = localStorage.getItem("lists");
+  const lists = JSON.parse(storedLists);
+
+  for (const list in lists) {
+    const currentListDOM = document.querySelector(
+      `.completedTasksContainer[data-index="${list}"]`
+    );
+    currentListDOM.innerHTML = "";
+    for (const task in lists[list].completed) {
+      const taskElement = document.createElement("p");
+      taskElement.classList.add("completedTask");
+      taskElement.dataset.index = list;
+      taskElement.textContent = lists[list].completed[task].name;
+
+      currentListDOM.appendChild(taskElement);
+    }
+  }
 }
 
 const taskModalSubmitForm = (() => {

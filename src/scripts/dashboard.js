@@ -6,6 +6,7 @@ import "../styles/footer.css";
 import "../styles/new.css";
 import "../styles/listModal.css";
 import "../styles/taskModal.css";
+import "../styles/completed.css";
 
 // Imports and updates icons
 import feather from "feather-icons";
@@ -13,13 +14,19 @@ import feather from "feather-icons";
 // Imports functions
 import { hideListModal, showListModal, updateDOMLists } from "./newList";
 
-import { hideTaskModal, showTaskModal, updateDOMTasks } from "./newTask";
+import {
+  hideTaskModal,
+  showTaskModal,
+  updateDOMTasks,
+  completedTasksDOM,
+} from "./newTask";
 
 import { userGreeting } from "./greeting";
 
 // Display user's lists and tasks
 updateDOMLists();
 updateDOMTasks();
+completedTasksDOM();
 
 // Updates user information
 const greeting = document.getElementById("greeting");

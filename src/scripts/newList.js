@@ -12,7 +12,9 @@ class List {
 
 // Placeholder list
 if (!localStorage.getItem("lists")) {
-  localStorage.setItem("lists", JSON.stringify([]));
+  const firstList = new List("My First List");
+  const lists = [firstList];
+  localStorage.setItem("lists", JSON.stringify(lists));
 }
 
 export function hideListModal() {
@@ -31,6 +33,13 @@ export function showListModal() {
 
   modalContainer.style.display = "block";
   newButton.style.display = "none";
+}
+
+function deleteList(index) {
+  const storedLists = localStorage.getItem("lists");
+  const lists = JSON.parse(storedLists);
+  lists.splice(index, 1);
+  localStorage.setItem("lists", JSON.stringify(lists));
 }
 
 export function updateDOMLists() {
@@ -53,15 +62,20 @@ export function updateDOMLists() {
         <div class="optionsContainer">
           <i data-feather="more-vertical" class="optionsIcon"></i>
           <div class="optionsDropdown">
-            <button>
+            <button class="deleteButton">
               <i data-feather="trash-2" class="deleteIcon"></i>
               <p>Delete</p>
             </button>
           </div>
         </div>
       </div>
-      <div class="taskContainer" data-index="${index}">
-     </div>
+      <div class="taskContainer" data-index="${index}"></div>
+      <div class="completedTasksHeader" data-index="${index}">
+        <input type="checkbox" id="completedArrow" class="dropdownArrow">
+        <p>Completed Tasks</p>
+      </div>
+      <div class="completedTasksContainer" data-index="${index}">
+      </div>
     </div>
   `
     )
@@ -71,6 +85,55 @@ export function updateDOMLists() {
   listContainer.innerHTML = html;
   // Initialize Feather icons
   feather.replace();
+
+  // Add event listeners to delete buttons
+  const deleteButtons = document.querySelectorAll(".deleteButton");
+  deleteButtons.forEach((button) => {
+    button.addEventListener("click", function () {
+      const listIndex = button.closest(".project").dataset.index;
+      deleteList(listIndex);
+      updateDOMLists();
+    });
+  });
+
+  const completedArrows = document.querySelectorAll("#completedArrow");
+  completedArrows.forEach((arrow) => {
+    arrow.addEventListener("change", function () {
+      const completedTasks = arrow
+        .closest(".project")
+        .querySelector(".completedTask");
+      const completedTasksContainer = arrow
+        .closest(".project")
+        .querySelector(".completedTasksContainer");
+
+      if (arrow.checked) {
+        arrow.style.transform = "rotate(90deg)";
+        completedTasksContainer.style.height = "max-content";
+        completedTasks.style.opacity = "1";
+      } else {
+        arrow.style.transform = "rotate(0deg)";
+        completedTasksContainer.style.height = "0px";
+        completedTasks.style.opacity = "0";
+      }
+    });
+  });
+
+  const completedTasksHeader = document.querySelectorAll(
+    ".completedTasksHeader"
+  );
+
+  completedTasksHeader.forEach((header) => {
+    const currListIndex = header.dataset.index;
+    const localStorageLists = JSON.parse(localStorage.getItem("lists"));
+    const localStorageCompletedTasks =
+      localStorageLists[currListIndex].completed;
+
+    if (localStorageCompletedTasks.length === 0) {
+      header.style.display = "none";
+    } else {
+      header.style.display = "flex";
+    }
+  });
 }
 
 function addListToLocalStorage(name) {

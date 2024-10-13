@@ -1,0 +1,44 @@
+.completedTasksHeader {
+  margin: 0;
+  margin-bottom: 0.5rem;
+  padding: 0;
+  height: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  font-size: 0.9rem;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.completedTasksContainer {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+  height: 0px;
+  transition: all 0.3s ease-in-out;
+}
+
+#completedArrow {
+  height: 1rem;
+  width: 1rem;
+  border-radius: 0.8rem;
+  margin-right: 0.5rem;
+}
+
+#completedArrow:hover {
+  background-color: var(--color-secondary-light);
+}
+
+.completedTask {
+  background-color: var(--color-secondary-light);
+  text-decoration: line-through;
+  font-size: 0.9rem;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  height: min-content;
+  width: max-content;
+  padding: 0.3rem;
+  border-radius: 0.8rem;
+  margin-bottom: 0.5rem;
+}
