@@ -1,4 +1,5 @@
 import "../styles/listModal.css";
+import { updateDOMTasks } from "./newTask";
 import feather from "feather-icons";
 
 class List {
@@ -49,7 +50,15 @@ export function updateDOMLists() {
     <div class="project" data-index="${index}">
       <div class="projectHeader">
         <p class="title">${list.name}</p>
-        <i data-feather="more-vertical" class="more"></i>
+        <div class="optionsContainer">
+          <i data-feather="more-vertical" class="optionsIcon"></i>
+          <div class="optionsDropdown">
+            <button>
+              <i data-feather="trash-2" class="deleteIcon"></i>
+              <p>Delete</p>
+            </button>
+          </div>
+        </div>
       </div>
       <div class="taskContainer" data-index="${index}">
      </div>
@@ -60,7 +69,6 @@ export function updateDOMLists() {
 
   // Insert the constructed HTML into the container
   listContainer.innerHTML = html;
-
   // Initialize Feather icons
   feather.replace();
 }
@@ -90,6 +98,7 @@ const listModalSubmitForm = (() => {
     // Update local storage and DOM
     addListToLocalStorage(listName);
     updateDOMLists();
+    updateDOMTasks();
 
     // Hides modal and resets form
     hideListModal();

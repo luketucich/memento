@@ -30,7 +30,6 @@ document.querySelector("form").addEventListener("submit", function (event) {
     localStorage.getItem("avatar") &&
     localStorage.getItem("theme")
   ) {
-    alert("You already have an account!");
     window.location.href = "dashboard.html";
     return;
   }

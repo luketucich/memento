@@ -72,7 +72,6 @@ function finishTaskLocalStorage() {
   // Update Local Storage
   localStorage.setItem("lists", JSON.stringify(lists));
 }
-function finishTaskDOM() {}
 
 export function updateDOMTasks() {
   // Retrieve and parse the stored lists
@@ -105,38 +104,39 @@ export function updateDOMTasks() {
       const formattedTime = `${formattedHour}:${minute} ${ampm}`;
 
       taskElement.innerHTML = `
-      <i data-feather="circle" class="circle"></i>
-      <p class="taskName">${currListTasks[task].name}</p>
-      <input type="checkbox" class="dropdownArrow">
-      <div class="dateContainer">
-        <i data-feather="clock" class="clock"></i>
-        <p class="taskDate">Due <u>${formattedDate}</u> at <u>${formattedTime}</u></p>
-      </div>
-      <div class="priorityContainer">
-        <i data-feather="flag" class="flag"></i>
-        <p class="taskPriority">${currListTasks[task].priority} Priority</p>
-      </div>
+        <div class="infoContainer">
+          <i data-feather="circle" class="circle"></i>
+          <p class="taskName">${currListTasks[task].name}</p>
+          <input type="checkbox" class="dropdownArrow">
+        </div>
+          <div class="dateContainer">
+            <i data-feather="clock" class="clock"></i>
+            <p class="taskDate">Due <u>${formattedDate}</u> at <u>${formattedTime}</u></p>
+          </div>
+          <div class="priorityContainer">
+            <i data-feather="flag" class="flag"></i>
+            <p class="taskPriority">${currListTasks[task].priority} Priority</p>
+          </div>
       `;
 
       currTaskContainer.appendChild(taskElement);
+
       feather.replace();
 
-      const dropdownArrow = taskElement.querySelector(".dropdownArrow");
-      const dateContainer = taskElement.querySelector(".dateContainer");
-      const priorityContainer = taskElement.querySelector(".priorityContainer");
       const circle = taskElement.querySelector(".circle");
+      const dropdownArrow = taskElement.querySelector(".dropdownArrow");
+      const priorityContainer = taskElement.querySelector(".priorityContainer");
+      const dateContainer = taskElement.querySelector(".dateContainer");
 
       dropdownArrow.addEventListener("change", function () {
         if (dropdownArrow.checked) {
           dropdownArrow.style = "transform: rotate(90deg)";
-          taskElement.style = "padding-bottom: 5rem";
-          dateContainer.style = "opacity: 1";
-          priorityContainer.style = "opacity: 1";
+          dateContainer.style = "display: flex";
+          priorityContainer.style = "display: flex";
         } else {
           dropdownArrow.style = "transform: rotate(0deg)";
-          taskElement.style = "padding-bottom: 0.5rem";
-          dateContainer.style = "opacity: 0";
-          priorityContainer.style = "opacity: 0";
+          dateContainer.style = "display: none";
+          priorityContainer.style = "display: none";
         }
       });
 
