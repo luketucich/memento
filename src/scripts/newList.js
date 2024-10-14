@@ -1,5 +1,5 @@
 import "../styles/listModal.css";
-import { updateDOMTasks } from "./newTask";
+import { updateDOMTasks, completedTasksDOM } from "./newTask";
 import feather from "feather-icons";
 
 class List {
@@ -93,6 +93,8 @@ export function updateDOMLists() {
       const listIndex = button.closest(".project").dataset.index;
       deleteList(listIndex);
       updateDOMLists();
+      updateDOMTasks();
+      completedTasksDOM();
     });
   });
 
