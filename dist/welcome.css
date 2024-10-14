@@ -202,6 +202,19 @@ input[type="text"]:focus {
   background-color: #202020;
 }
 
+#username {
+  text-align: center;
+  padding: 1rem;
+  width: 70%;
+  max-width: 80%;
+  font-size: 1rem;
+  border: 0.0625rem solid var(--color-gray);
+  border-radius: 0.5rem;
+  outline: none;
+  font-family: var(--font-primary);
+  transition: border-color 0.3s;
+}
+
 button {
   font-family: var(--font-primary);
 }
@@ -218,7 +231,7 @@ button {
   }
 
   #feather {
-    width: 2rem;
+    width: 2reopwm;
     height: 2rem;
     margin-left: 0.3rem;
   }
@@ -228,7 +241,7 @@ button {
     margin-bottom: 0.625rem;
   }
 
-  input[type="text"] {
+  #username {
     width: 80%;
     max-width: 80%;
     padding: 0.8rem;
