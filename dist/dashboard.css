@@ -55,10 +55,23 @@ body {
   --color-primary-light: #ffffff;
   --color-secondary-light: #e9e9e9;
   --color-gray: #434343;
-  /* --color-accent: #38834d;
-  --color-primary-light: #1e1e1e;
-  --color-secondary-light: #121212;
-  --color-gray: #dcdcdc; */
+  --color-gray-dark: #ededed;
+  --color-form-input: #efefef;
+  --color-form-text: #434343;
+  --icon-filter: invert(26%) sepia(0%) saturate(0%) hue-rotate(187deg)
+    brightness(93%) contrast(90%);
+}
+
+.darkmode {
+  --color-accent: #3c9455;
+  --color-primary-light: #202020;
+  --color-secondary-light: #181818;
+  --color-gray: #ededed;
+  --color-gray-dark: #ededed;
+  --color-form-input: #383838;
+  --color-form-text: #ededed;
+  --icon-filter: invert(85%) sepia(8%) saturate(0%) hue-rotate(225deg)
+    brightness(98%) contrast(97%);
 }
 
 header {
@@ -146,6 +159,8 @@ header {
   padding-right: 1rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   height: min-content;
+  /* Add transition for height */
+  transition: height 2s ease;
 }
 
 .projectHeader {
@@ -186,11 +201,6 @@ header {
   gap: 1rem;
   transition: all 0.3s ease-in-out;
 }
-
-.task > * {
-  transition: all 0.3s ease-in-out;
-}
-
 .taskName {
   word-break: break-all;
   min-width: 11rem;
@@ -202,6 +212,7 @@ header {
 }
 
 .dropdownArrow {
+  filter: var(--icon-filter);
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -228,10 +239,10 @@ header {
 .priorityContainer {
   display: none;
   align-items: center;
-  width: 15rem;
   user-select: none;
   gap: 1rem;
   padding: 0;
+  width: 15rem;
 }
 
 .infoContainer *,
@@ -240,10 +251,10 @@ header {
   margin: 0;
 }
 
-.more,
-.circle,
 .flag,
 .clock,
+.more,
+.circle,
 .dropdownArrow {
   width: 1.2rem;
   height: 1.2rem;
@@ -255,6 +266,7 @@ header {
   position: relative;
   width: 1rem;
   height: 1rem;
+  margin-right: 0.5rem;
 }
 
 .optionsIcon {
@@ -262,7 +274,7 @@ header {
   height: 1.2rem;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
-  color: var(--color-icon, #333);
+  color: var(--color-gray);
 }
 
 .optionsIcon:hover {
@@ -362,7 +374,7 @@ footer {
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
   z-index: 2;
-  color: var(--color-primary-light);
+  color: var(--color-gray-dark);
 }
 
 #newContainer:hover #plus {
@@ -393,7 +405,7 @@ footer {
 /* Styles for options */
 .option {
   background-color: var(--color-accent);
-  color: var(--color-primary-light);
+  color: var(--color-gray-dark);
   font-size: 1.3rem;
   font-weight: lighter;
   padding: 0.3rem 0.6rem;
@@ -411,13 +423,7 @@ footer {
   min-width: 100vw;
   min-height: 100vh;
   backdrop-filter: blur(10px);
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.3
-  ); /* Match task modal background opacity */
-  position: fixed; /* Use fixed positioning */
+  position: fixed;
   z-index: 1000;
   display: none;
   align-items: center;
@@ -428,7 +434,7 @@ footer {
 #listModal {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Match task modal shadow */
   text-align: left; /* Align text to the left */
-  background-color: white;
+  background-color: var(--color-primary-light);
   padding: 1.8rem 2.5rem; /* Match task modal padding */
   border-radius: 0.8rem;
   width: 85%;
@@ -490,11 +496,11 @@ footer {
   padding: 0.6rem 1rem;
   font-size: 1rem;
   border-radius: 0.5rem;
-  border: 1px solid var(--color-gray);
+  border: 1px solid var(--color-form-input);
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  color: var(--color-gray-dark);
-  background-color: #f9f9f9;
+  color: black;
+  background-color: var(--color-form-input);
   transition: border-color 0.3s;
 }
 
@@ -546,7 +552,6 @@ footer {
   min-width: 100vw;
   min-height: 100vh;
   backdrop-filter: blur(10px);
-  background-color: rgba(0, 0, 0, 0.3);
   position: fixed;
   z-index: 1000;
   display: none;
@@ -557,7 +562,7 @@ footer {
 #taskModal {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   text-align: left;
-  background-color: white;
+  background-color: var(--color-primary-light);
   padding: 1.8rem 2.5rem;
   border-radius: 0.8rem;
   width: 85%;
@@ -599,7 +604,7 @@ footer {
 .inputLabel {
   font-size: 1rem;
   margin-bottom: 0.3rem;
-  color: var(--color-gray-dark);
+  color: var(--color-gray);
 }
 
 #taskName,
@@ -612,12 +617,16 @@ footer {
   padding: 0.6rem 1rem 0.6rem 1rem;
   font-size: 1rem;
   border-radius: 0.5rem;
-  border: 1px solid var(--color-gray);
+  border: 1px solid var(--color-form-input);
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  color: var(--color-gray-dark);
-  background-color: #f9f9f9;
+  color: var(--color-form-text);
+  background-color: var(--color-form-input);
   transition: border-color 0.3s;
+}
+#dateSelect::-webkit-calendar-picker-indicator,
+#timeSelect::-webkit-calendar-picker-indicator {
+  filter: var(--icon-filter);
 }
 
 #taskName:focus,
@@ -670,5 +679,45 @@ footer {
     width: 100%;
     padding: 0.7rem 0;
   }
+}
+
+.completedTasksHeader {
+  margin: 0;
+  margin-bottom: 0.5rem;
+  padding: 0;
+  height: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  font-size: 0.9rem;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+}
+
+.completedTasksContainer {
+  display: none;
+  flex-direction: column;
+  padding-left: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+#completedArrow {
+  height: 1rem;
+  width: 1rem;
+  border-radius: 0.8rem;
+  margin-right: 0.5rem;
+  filter: var(--icon-filter);
+}
+
+.completedTask {
+  background-color: var(--color-secondary-light);
+  text-decoration: line-through;
+  font-size: 0.9rem;
+  margin: 0;
+  padding: 0;
+  height: min-content;
+  width: max-content;
+  padding: 0.3rem;
+  border-radius: 0.8rem;
+  margin-bottom: 0.5rem;
 }
 

@@ -150,8 +150,8 @@ export function updateDOMTasks() {
 
         // Update Local Storage
         finishTaskLocalStorage();
-        updateDOMTasks();
         updateDOMLists();
+        updateDOMTasks();
         completedTasksDOM();
       });
     }

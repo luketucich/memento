@@ -108,12 +108,10 @@ export function updateDOMLists() {
 
       if (arrow.checked) {
         arrow.style.transform = "rotate(90deg)";
-        completedTasksContainer.style.height = "max-content";
-        completedTasks.style.opacity = "1";
+        completedTasksContainer.style.display = "flex";
       } else {
         arrow.style.transform = "rotate(0deg)";
-        completedTasksContainer.style.height = "0px";
-        completedTasks.style.opacity = "0";
+        completedTasksContainer.style.display = "none";
       }
     });
   });

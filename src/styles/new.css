@@ -23,7 +23,7 @@
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
   z-index: 2;
-  color: var(--color-primary-light);
+  color: var(--color-gray-dark);
 }
 
 #newContainer:hover #plus {
@@ -54,7 +54,7 @@
 /* Styles for options */
 .option {
   background-color: var(--color-accent);
-  color: var(--color-primary-light);
+  color: var(--color-gray-dark);
   font-size: 1.3rem;
   font-weight: lighter;
   padding: 0.3rem 0.6rem;

@@ -3,13 +3,7 @@
   min-width: 100vw;
   min-height: 100vh;
   backdrop-filter: blur(10px);
-  background-color: rgba(
-    0,
-    0,
-    0,
-    0.3
-  ); /* Match task modal background opacity */
-  position: fixed; /* Use fixed positioning */
+  position: fixed;
   z-index: 1000;
   display: none;
   align-items: center;
@@ -20,7 +14,7 @@
 #listModal {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Match task modal shadow */
   text-align: left; /* Align text to the left */
-  background-color: white;
+  background-color: var(--color-primary-light);
   padding: 1.8rem 2.5rem; /* Match task modal padding */
   border-radius: 0.8rem;
   width: 85%;
@@ -82,11 +76,11 @@
   padding: 0.6rem 1rem;
   font-size: 1rem;
   border-radius: 0.5rem;
-  border: 1px solid var(--color-gray);
+  border: 1px solid var(--color-form-input);
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  color: var(--color-gray-dark);
-  background-color: #f9f9f9;
+  color: black;
+  background-color: var(--color-form-input);
   transition: border-color 0.3s;
 }
 

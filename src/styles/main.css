@@ -18,8 +18,21 @@ body {
   --color-primary-light: #ffffff;
   --color-secondary-light: #e9e9e9;
   --color-gray: #434343;
-  /* --color-accent: #38834d;
-  --color-primary-light: #1e1e1e;
-  --color-secondary-light: #121212;
-  --color-gray: #dcdcdc; */
+  --color-gray-dark: #ededed;
+  --color-form-input: #efefef;
+  --color-form-text: #434343;
+  --icon-filter: invert(26%) sepia(0%) saturate(0%) hue-rotate(187deg)
+    brightness(93%) contrast(90%);
+}
+
+.darkmode {
+  --color-accent: #3c9455;
+  --color-primary-light: #202020;
+  --color-secondary-light: #181818;
+  --color-gray: #ededed;
+  --color-gray-dark: #ededed;
+  --color-form-input: #383838;
+  --color-form-text: #ededed;
+  --icon-filter: invert(85%) sepia(8%) saturate(0%) hue-rotate(225deg)
+    brightness(98%) contrast(97%);
 }

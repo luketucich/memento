@@ -121,7 +121,7 @@ input[type="text"]:focus {
 }
 
 .avatars img,
-.themes img {
+.themePreview {
   width: 6.25rem;
   height: 6.25rem;
   border-radius: 0.75rem;
@@ -136,7 +136,7 @@ input[type="text"]:focus {
 }
 
 .avatars input[type="radio"]:checked + img,
-.themes input[type="radio"]:checked + img {
+.themes input[type="radio"]:checked + div {
   border: 0.125rem solid var(--color-accent);
   transform: scale(1.05);
 }
@@ -156,6 +156,13 @@ input[type="text"]:focus {
 .submit-btn:hover {
   filter: brightness(1.15);
   transform: translateY(-0.1875rem);
+}
+
+#lightPreview {
+  background-color: #e9e9e9;
+}
+#darkPreview {
+  background-color: #202020;
 }
 
 button {

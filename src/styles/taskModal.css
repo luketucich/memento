@@ -2,7 +2,6 @@
   min-width: 100vw;
   min-height: 100vh;
   backdrop-filter: blur(10px);
-  background-color: rgba(0, 0, 0, 0.3);
   position: fixed;
   z-index: 1000;
   display: none;
@@ -13,7 +12,7 @@
 #taskModal {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   text-align: left;
-  background-color: white;
+  background-color: var(--color-primary-light);
   padding: 1.8rem 2.5rem;
   border-radius: 0.8rem;
   width: 85%;
@@ -55,7 +54,7 @@
 .inputLabel {
   font-size: 1rem;
   margin-bottom: 0.3rem;
-  color: var(--color-gray-dark);
+  color: var(--color-gray);
 }
 
 #taskName,
@@ -68,12 +67,16 @@
   padding: 0.6rem 1rem 0.6rem 1rem;
   font-size: 1rem;
   border-radius: 0.5rem;
-  border: 1px solid var(--color-gray);
+  border: 1px solid var(--color-form-input);
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  color: var(--color-gray-dark);
-  background-color: #f9f9f9;
+  color: var(--color-form-text);
+  background-color: var(--color-form-input);
   transition: border-color 0.3s;
+}
+#dateSelect::-webkit-calendar-picker-indicator,
+#timeSelect::-webkit-calendar-picker-indicator {
+  filter: var(--icon-filter);
 }
 
 #taskName:focus,

@@ -31,6 +31,8 @@
   padding-right: 1rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   height: min-content;
+  /* Add transition for height */
+  transition: height 2s ease;
 }
 
 .projectHeader {
@@ -82,6 +84,7 @@
 }
 
 .dropdownArrow {
+  filter: var(--icon-filter);
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -143,7 +146,7 @@
   height: 1.2rem;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
-  color: var(--color-icon, #333);
+  color: var(--color-gray);
 }
 
 .optionsIcon:hover {

@@ -23,6 +23,12 @@ import {
 
 import { userGreeting } from "./greeting";
 
+if (localStorage.getItem("theme") === "dark") {
+  document.body.classList.add("darkmode");
+  document.getElementById("listModalContainer").classList.add("darkmode");
+  document.getElementById("taskModalContainer").classList.add("darkmode");
+}
+
 // Display user's lists and tasks
 updateDOMLists();
 updateDOMTasks();
