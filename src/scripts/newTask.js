@@ -128,8 +128,6 @@ export function updateDOMTasks() {
       const dropdownArrow = taskElement.querySelector(".dropdownArrow");
       const priorityContainer = taskElement.querySelector(".priorityContainer");
       const dateContainer = taskElement.querySelector(".dateContainer");
-      const clock = taskElement.querySelector(".clock");
-      const flag = taskElement.querySelector(".flag");
 
       dropdownArrow.addEventListener("change", function () {
         if (dropdownArrow.checked) {
